@@ -19,9 +19,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FeatureSwitchComponent component = DaggerFeatureSwitchComponent
-                .builder().featureSwitchModule(new FeatureSwitchModule()).build();
-        switches = component.makeSwitches();
+        ((App) getApplication()).component().inject(this);
         switches.isEnabled("foo");
         setContentView(R.layout.activity_main);
     }

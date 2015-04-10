@@ -7,7 +7,7 @@ import dagger.Provides;
 class FeatureSwitchModule {
 
     @Provides
-    FeatureSwitches provideFeatureSwitches() {
+    public FeatureSwitches provide() {
         FeatureSwitches switches = new FeatureSwitches();
         switches.isEnabled("bar");
         return switches;
