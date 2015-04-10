@@ -13,11 +13,16 @@ import javax.inject.Inject;
 public class MainActivity extends ActionBarActivity {
     private static final String TAG = "MainActivity";
 
+    @Inject
+    FeatureSwitches switches;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        Log.d(TAG, "action=" + intent.getAction());
+        FeatureSwitchComponent component = DaggerFeatureSwitchComponent
+                .builder().featureSwitchModule(new FeatureSwitchModule()).build();
+        switches = component.makeSwitches();
+        switches.isEnabled("foo");
         setContentView(R.layout.activity_main);
     }
 
