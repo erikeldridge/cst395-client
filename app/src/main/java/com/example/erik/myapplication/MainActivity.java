@@ -1,19 +1,30 @@
 package com.example.erik.myapplication;
 
+import android.app.LoaderManager;
 import android.content.Intent;
+import android.content.Loader;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
-public class MainActivity extends ActionBarActivity {
-    private static final String TAG = "MainActivity";
+public class MainActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Object> {
+    static final String TAG = "MainActivity";
+    SimpleCursorAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getLoaderManager().initLoader(0, null, this);
+        String[] from = new String[] { FeatureSwitchContract.COLUMN_KEY };
+        int[] to = new int[] { R.id.label };
+        mAdapter = new SimpleCursorAdapter(this, R.layout.row, null, from, to, 0);
+        ListView list = (ListView) findViewById(android.R.id.list);
+        list.setAdapter(mAdapter);
     }
 
 
@@ -37,5 +48,20 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public Loader<Object> onCreateLoader(int i, Bundle bundle) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Object> objectLoader, Object o) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Object> objectLoader) {
+
     }
 }
