@@ -22,7 +22,8 @@ public class App extends Application {
     public ContentQueryMap mSwitches;
 
     public boolean isEnabled(String key) {
-        return mSwitches.getValues(key).getAsInteger(FeatureSwitchContract.COLUMN_VALUE) == 1;
+        ContentValues values = mSwitches.getValues(key);
+        return values != null && values.getAsInteger(FeatureSwitchContract.COLUMN_VALUE) == 1;
     }
 
     @Override
