@@ -10,9 +10,11 @@ public final class FeatureSwitchContract implements BaseColumns {
     static final String CREATE = "create table "
             + TABLE_NAME
             + "("
-            + _ID + " integer primary key autoincrement, "
+            + _ID + " integer, "
             + COLUMN_KEY + " text not null, "
-            + COLUMN_VALUE + " text not null,"
+            + COLUMN_VALUE + " integer not null, "
+            + "primary key(" + COLUMN_KEY + "), "
+            + "unique(" + COLUMN_KEY + ")"
             + ");";
 
     static final String DROP = "DROP TABLE IF EXISTS " + TABLE_NAME;

@@ -34,22 +34,20 @@ public class FeatureSwitchContentProvider extends ContentProvider {
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues contentValues) {
-        getContext().getContentResolver().notifyChange(URI, null);
-        return null;
+    public Uri insert(Uri uri, ContentValues values) {
+        final SQLiteDatabase db = mHelper.getWritableDatabase();
+        final long id = db.replace(FeatureSwitchContract.TABLE_NAME, null, values);
+        getContext().getContentResolver().notifyChange(uri, null);
+        return Uri.parse(FeatureSwitchContract.TABLE_NAME + "/" + id);
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] args) {
-        final SQLiteDatabase db = mHelper.getWritableDatabase();
-        final int count = db.delete(FeatureSwitchContract.TABLE_NAME, selection, args);
-        getContext().getContentResolver().notifyChange(URI, null);
-        return count;
+        return 0;
     }
 
     @Override
     public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
-        getContext().getContentResolver().notifyChange(URI, null);
         return 0;
     }
 }

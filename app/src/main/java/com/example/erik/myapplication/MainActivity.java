@@ -1,17 +1,18 @@
 package com.example.erik.myapplication;
 
 import android.app.LoaderManager;
-import android.content.Intent;
+import android.content.CursorLoader;
 import android.content.Loader;
+import android.database.Cursor;
+import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-public class MainActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Object> {
+public class MainActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     static final String TAG = "MainActivity";
     SimpleCursorAdapter mAdapter;
 
@@ -19,10 +20,14 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d(TAG, "enabled=" + ((App) getApplication()).isEnabled("feature_a"));
         getLoaderManager().initLoader(0, null, this);
-        String[] from = new String[] { FeatureSwitchContract.COLUMN_KEY };
-        int[] to = new int[] { R.id.label };
-        mAdapter = new SimpleCursorAdapter(this, R.layout.row, null, from, to, 0);
+        mAdapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_list_item_1,
+                null,
+                new String[] { FeatureSwitchContract.COLUMN_KEY },
+                new int[] { android.R.id.text1 },
+                0);
         ListView list = (ListView) findViewById(android.R.id.list);
         list.setAdapter(mAdapter);
     }
@@ -51,17 +56,18 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
     }
 
     @Override
-    public Loader<Object> onCreateLoader(int i, Bundle bundle) {
-        return null;
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        return new CursorLoader(this, FeatureSwitchContentProvider.URI,
+                new String[] {}, null, null, null);
     }
 
     @Override
-    public void onLoadFinished(Loader<Object> objectLoader, Object o) {
-
+    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+        mAdapter.swapCursor(cursor);
     }
 
     @Override
-    public void onLoaderReset(Loader<Object> objectLoader) {
-
+    public void onLoaderReset(Loader<Cursor> cursorLoader) {
+        mAdapter.swapCursor(null);
     }
 }
