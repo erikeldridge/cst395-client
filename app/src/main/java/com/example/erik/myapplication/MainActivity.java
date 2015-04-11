@@ -7,20 +7,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import javax.inject.Inject;
-
-
 public class MainActivity extends ActionBarActivity {
     private static final String TAG = "MainActivity";
-
-    @Inject
-    FeatureSwitches switches;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((App) getApplication()).component().inject(this);
-        switches.isEnabled("foo");
         setContentView(R.layout.activity_main);
     }
 
