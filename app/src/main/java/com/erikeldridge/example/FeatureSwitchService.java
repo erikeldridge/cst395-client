@@ -1,10 +1,9 @@
-package com.example.erik.myapplication;
+package com.erikeldridge.example;
 
 import java.util.Map;
 
 import retrofit.Callback;
 import retrofit.http.GET;
-import retrofit.http.Path;
 import retrofit.http.Query;
 
 public interface FeatureSwitchService {

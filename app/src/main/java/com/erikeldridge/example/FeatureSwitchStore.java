@@ -1,4 +1,4 @@
-//package com.example.erik.myapplication;
+//package com.erikeldridge.myapplication;
 //
 //import android.content.ContentQueryMap;
 //import android.content.ContentValues;

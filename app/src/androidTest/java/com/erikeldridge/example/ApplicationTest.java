@@ -1,4 +1,4 @@
-package com.example.erik.myapplication;
+package com.erikeldridge.example;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

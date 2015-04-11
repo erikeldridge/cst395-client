@@ -1,4 +1,4 @@
-package com.example.erik.myapplication;
+package com.erikeldridge.example;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
 public class FeatureSwitchContentProvider extends ContentProvider {
-    static final String AUTHORITY = "com.example.erik.myapplication";
+    static final String AUTHORITY = "com.erikeldridge.example";
     static final Uri URI = Uri.parse("content://" + AUTHORITY + "/" + FeatureSwitchContract.TABLE_NAME);
 
     DatabaseHelper mHelper;

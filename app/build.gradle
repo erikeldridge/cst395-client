@@ -7,7 +7,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.example.erik.myapplication"
+        applicationId "com.erikeldridge.example"
         minSdkVersion 11
         targetSdkVersion 22
         versionCode 1

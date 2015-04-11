@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.erik.myapplication" >
+    package="com.erikeldridge.example" >
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
-        android:name=".App"
+        android:name="com.erikeldridge.example.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.erikeldridge.example.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +18,8 @@
             </intent-filter>
         </activity>
         <provider
-            android:name=".FeatureSwitchContentProvider"
-            android:authorities="com.example.erik.myapplication" >
+            android:name="com.erikeldridge.example.FeatureSwitchContentProvider"
+            android:authorities="com.erikeldridge.example" >
         </provider>
     </application>
 
