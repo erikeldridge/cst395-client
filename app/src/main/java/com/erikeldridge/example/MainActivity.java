@@ -10,7 +10,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     static final String TAG = "MainActivity";
@@ -30,6 +34,19 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
                 0);
         ListView list = (ListView) findViewById(android.R.id.list);
         list.setAdapter(mAdapter);
+
+        final EditText textData = (EditText) findViewById(R.id.textField);
+
+        Button send = (Button) findViewById(R.id.sendButton);
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Toast.makeText(getApplicationContext(),textData.getText(), Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
 
